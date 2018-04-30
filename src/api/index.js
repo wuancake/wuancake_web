@@ -6,3 +6,10 @@ export function test () {
     method: 'get'
   })
 }
+
+export function getGroupsInfo () {
+  return fetch({
+    url: '/findAllGroupInfo',
+    method: 'post'
+  })
+}

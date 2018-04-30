@@ -4,7 +4,7 @@
 
 ## 介绍
 项目使用前后端分离模式开发，使用 axios 管理请求，前期开发使用 mock.js 模拟请求，后期接入后台服务进行调试。项目使用了 Element-ui ，由于页面非常少，故采用按需引入的方式。
-具体如何引入组件，参见 [Element-ui](http://element-cn.eleme.io/#/zh-CN)。由于项目很小，状态管理也不再使用 vuex ，我们自己实现简易的状态管理功能。
+具体如何引入组件，参见 [Element-ui](http://element-cn.eleme.io/#/zh-CN)。
 
 ### mock 使用介绍
 ``` js

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { test } from '../api'
+import { test, getGroupsInfo } from '../api'
 
 export default {
   name: 'HelloWorld',
@@ -20,12 +20,18 @@ export default {
   },
   mounted () {
     this.testFetch()
+    this.getGroups()
   },
   methods: {
     testFetch () {
       test().then(res => {
         console.log(res)
         this.mockBackData = this.mockBackData + ' ' + res.test
+      })
+    },
+    getGroups () {
+      getGroupsInfo().then(res => {
+        console.log(res)
       })
     }
   }
