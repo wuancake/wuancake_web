@@ -7,6 +7,7 @@
 
 <script>
 import NavList from './NavList'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Layout',
@@ -15,6 +16,12 @@ export default {
   },
   data () {
     return {}
+  },
+  mounted () {
+    this.setGroups()
+  },
+  methods: {
+    ...mapActions(['setGroups'])
   }
 }
 </script>

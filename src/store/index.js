@@ -16,6 +16,8 @@ const store = new Vuex.Store({
   actions: {
     async setGroups ({ commit }) {
       const groups = await getGroupsInfo()
+      console.log('groups')
+      console.log(groups.groups)
       commit('SET_GROUPS', groups.groups)
       return groups
     }

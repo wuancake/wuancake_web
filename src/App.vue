@@ -20,5 +20,6 @@ html, body {
 }
 #app {
   height: 100%;
+  min-height: 300px;
 }
 </style>
