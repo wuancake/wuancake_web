@@ -60,4 +60,7 @@ export default function defaultRule (MockAdapter) {
         }
       ]
     })
+    .onPost('/main').reply(200, {
+      status: 2
+    })
 }
