@@ -10,10 +10,10 @@
     <span>{{ hint }}</span>
     <button @click="toHelloWorld">go hello,world page</button>
     <div class="btns">
-      <button>撰写周报</button>
-      <button>我的周报</button>
-      <button>申请请假</button>
-      <button>取消请假</button>
+      <button v-if="weeklyStatus === 1">撰写周报</button>
+      <button v-if="weeklyStatus === 2 || weeklyStatus === 3">我的周报</button>
+      <button v-if="weeklyStatus === 1" @click="applyLeave">申请请假</button>
+      <button @click="cancellationLeave" v-if="weeklyStatus === 3">取消请假</button>
     </div>
   </div>
 </template>
@@ -103,6 +103,12 @@ export default {
     },
     setTime () {
       this.laveTime = dealWithTime()
+    },
+    cancellationLeave () {
+
+    },
+    applyLeave () {
+      this.$router.push({ path: '/leave' })
     }
   }
 }
