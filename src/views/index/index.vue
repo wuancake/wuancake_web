@@ -4,16 +4,16 @@
       <span>本周第{{ nowWeekNumber }}周</span>
       <span>{{ weeklyStatusMessage }}</span>
     </p>
-    <time v-if="weeklyStatus === 1">剩余{{ laveTime.lave_days | digitsToDouble }}天{{ laveTime.lave_hours | digitsToDouble }}时{{ laveTime.lave_minutes | digitsToDouble }}分{{ laveTime.lave_seconds | digitsToDouble }}秒</time>
+    <span>本周剩余时间</span>
+    <time class="time-left" v-if="weeklyStatus === 1"><strong>{{ laveTime.lave_days | digitsToDouble }}</strong>天<strong>{{ laveTime.lave_hours | digitsToDouble }}</strong>时<strong>{{ laveTime.lave_minutes | digitsToDouble }}</strong>分<strong>{{ laveTime.lave_seconds | digitsToDouble }}</strong>秒</time>
     <span v-if="weeklyStatus === 2">周报已提交</span>
     <span v-if="weeklyStatus === 3">本周已请假</span>
-    <span>{{ hint }}</span>
-    <button @click="toHelloWorld">go hello,world page</button>
+    <span class="hint">{{ hint }}</span>
     <div class="btns">
       <button v-if="weeklyStatus === 1">撰写周报</button>
       <button v-if="weeklyStatus === 2 || weeklyStatus === 3">我的周报</button>
-      <button v-if="weeklyStatus === 1" @click="applyLeave">申请请假</button>
-      <button @click="cancellationLeave" v-if="weeklyStatus === 3">取消请假</button>
+      <button class="btn-second" v-if="weeklyStatus === 1" @click="applyLeave">申请请假</button>
+      <button  class="btn-second" @click="cancellationLeave" v-if="weeklyStatus === 3">取消请假</button>
     </div>
   </div>
 </template>
@@ -119,6 +119,7 @@ export default {
   color: #00479b;
   font-weight: bold;
   font-size: 18px;
+  position: relative;
 }
 .home p {
   margin-bottom: 36px;
@@ -128,5 +129,40 @@ export default {
 }
 .home-container {
   padding: 96px 0 0 59px;
+}
+.time-left {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+}
+.time-left strong {
+  font-size: 36px;
+}
+.hint {
+  position: absolute;
+  top: 403px;
+  left: 125px;
+}
+.btns {
+  position: absolute;
+  left: 50%;
+  bottom: 154px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+.btn-second {
+  margin-left: 84px;
+  background: #fff;
+  color: #289dff;
+}
+button {
+  padding: 13px 59px;
+  border-radius: 5px;
+  border: 1px solid #289dff;
+  background: #289dff;
+  color: white;
 }
 </style>

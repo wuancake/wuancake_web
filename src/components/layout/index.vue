@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <nav-list class="nav"></nav-list>
-    <router-view />
+    <router-view class="main" />
   </div>
 </template>
 
@@ -35,5 +35,8 @@ export default {
 .nav {
   width: 266px;
   background: #006fdd;
+}
+.main {
+  flex: 1;
 }
 </style>
