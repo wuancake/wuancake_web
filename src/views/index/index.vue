@@ -20,7 +20,7 @@
 
 <script>
 import nowWeek from '../../utils/nowWeek'
-import { getWeeklyStatus } from '../../api'
+import { getWeeklyStatus, cancelLeave } from '../../api'
 import dealWithTime from '../../utils/dealWithTime'
 
 export default {
@@ -93,22 +93,46 @@ export default {
     toHelloWorld () {
       this.$router.push({ path: '/helloworld' })
     },
-    getWeekNumbers () {
+    getWeekNumbers () { // 获取当前周数
       this.nowWeekNumber = nowWeek()
     },
-    getWeekly () {
+    getWeekly () { // 获取周报状态
       getWeeklyStatus(1).then(res => {
         this.weeklyStatus = res.status
       })
     },
-    setTime () {
+    setTime () { // 倒计时
       this.laveTime = dealWithTime()
     },
     cancellationLeave () {
 
     },
-    applyLeave () {
+    applyLeave () { // 跳转到申请请假页面
       this.$router.push({ path: '/leave' })
+    },
+    cancel () { // 取消请假
+      cancelLeave({
+        userId: 1
+      }).then(res => {
+        if (res.infoCode === 200) {
+          this.$notify.success({
+            title: '取消成功',
+            message: '取消请假成功'
+          })
+          this.getWeekly()
+        } else {
+          this.$notify.warning({
+            title: '取消失败',
+            message: `${res.infoText}，请稍后再试`
+          })
+        }
+      }).catch(err => {
+        console.log(err)
+        this.$notify.success({
+          title: '出现错误',
+          message: '取消请假未成功，请稍后再试'
+        })
+      })
     }
   }
 }

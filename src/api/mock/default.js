@@ -63,4 +63,10 @@ export default function defaultRule (MockAdapter) {
     .onPost('/main').reply(200, {
       status: 1
     })
+    .onPost('/leave').reply(200, {
+      userId: 1,
+      status: 3,
+      infoText: '请假成功',
+      infoCode: 200
+    })
 }

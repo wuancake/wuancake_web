@@ -24,3 +24,21 @@ export function getWeeklyStatus (uid) { // 获取周报状态
     data: data
   })
 }
+
+export function applyLeave (params) { // 申请请假
+  const data = params
+  return fetch({
+    url: '/leave',
+    method: 'post',
+    data: data
+  })
+}
+
+export function cancelLeave (params) { // 取消请假
+  const data = params
+  return fetch({
+    url: '/cancelLeave',
+    method: 'post',
+    data: data
+  })
+}
