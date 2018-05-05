@@ -8,9 +8,10 @@ import NProgress from 'nprogress' // 进度条
 // import 'nprogress/nprogress.css' // 进度条样式
 import './common/styles/my-nprogress.css' // 自定义 progress 样式
 import 'normalize.css/normalize.css' // normalize.css 样式格式化
-import { Notification, MessageBox, Loading, Message } from 'element-ui'
+import { Notification, MessageBox, Loading, Message, Icon } from 'element-ui'
 
 Vue.use(Loading.directive)
+Vue.use(Icon)
 
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$notify = Notification

@@ -19,7 +19,7 @@
         <textarea class="leave-main-text" v-model="content" placeholder="请假理由不得少于35个字..."></textarea>
       </div>
     </div>
-    <button @click="submit">提交请假申请</button>
+    <button class="leave-btn" @click="submit">提交请假申请</button>
   </div>
 </template>
 
@@ -96,6 +96,8 @@ export default {
   font-weight: bold;
   font-size: 18px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .leave-container {
   padding: 96px 0 0 59px;
@@ -124,10 +126,10 @@ export default {
   margin-bottom: 30px;
 }
 .btn-item {
-  border: 1px solid #00479b;
+  border: 1px solid #289dff;
   padding: 3px 10px;
   border-radius: 5px;
-  color: #00479b;
+  color: #289dff;
   font-size: 14px;
   margin-right: 50px;
   cursor: pointer;
@@ -139,7 +141,7 @@ export default {
 .leave-main-text {
   width: 60%;
   resize: none;
-  height: 100px;
+  height: 150px;
   border: 1px solid #00479b;
   border-radius: 2px;
   margin-top: 30px;
@@ -148,11 +150,20 @@ export default {
   outline: none;
 }
 .leave-main-text::-webkit-input-placeholder {
-  color: #00479b;
+  color: #289dff;
   font-weight: bold;
 }
 .active {
-  background: #00479b;
+  background: #289dff;
   color: #fff;
+}
+.leave-btn {
+  align-self: center;
+  padding: 13px 59px;
+  border-radius: 5px;
+  border: 1px solid #289dff;
+  background: #289dff;
+  color: white;
+  cursor: pointer;
 }
 </style>

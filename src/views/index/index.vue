@@ -176,6 +176,7 @@ export default {
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 .btn-second {
   margin-left: 84px;
@@ -188,5 +189,6 @@ button {
   border: 1px solid #289dff;
   background: #289dff;
   color: white;
+  cursor: pointer;
 }
 </style>

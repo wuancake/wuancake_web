@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Home from '@/views/index'
 import Layout from '@/components/layout'
 import Leave from '@/views/leave'
+import Group from '@/views/group'
 
 Vue.use(Router)
 
@@ -45,6 +46,19 @@ export default new Router({
           component: Leave,
           meta: {
             title: '申请请假 - 午安考勤'
+          }
+        }
+      ]
+    },
+    {
+      path: '/group',
+      component: Layout,
+      children: [
+        {
+          path: '',
+          component: Group,
+          meta: {
+            title: '选择分组 - 午安考勤'
           }
         }
       ]
