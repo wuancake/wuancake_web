@@ -1,22 +1,22 @@
 <template>
-  <div class="leave">
+  <div class="leave leave-container">
     <p>请假申请</p>
     <div class="leave-main">
-      <div>
-        <span></span>
-        <span></span>
+      <div class="leave-main-info">
+        <span class="leave-main-label">{{ groups[group_id].group_name }}</span>
+        <span>{{ user_info.user_name }}</span>
         <span>请假状态</span>
-        <span></span>
+        <span>未请假</span>
       </div>
-      <div>
-        <span>请假周数</span>
-        <span @click="selectWeek(1)" class="btn-item" :class="{ 'active': selectWeeks === 1 }">一周</span>
-        <span @click="selectWeek(2)" class="btn-item" :class="{ 'active': selectWeeks === 2 }">二周</span>
-        <span @click="selectWeek(3)" class="btn-item" :class="{ 'active': selectWeeks === 3 }">三周</span>
+      <div class="leave-main-select">
+        <span class="leave-main-label">请假周数</span>
+        <span @click="selectWeek(1)" class="btn-item" :class="{ 'active': selectWeeks === 1 }">一 周</span>
+        <span @click="selectWeek(2)" class="btn-item" :class="{ 'active': selectWeeks === 2 }">二 周</span>
+        <span @click="selectWeek(3)" class="btn-item" :class="{ 'active': selectWeeks === 3 }">三 周</span>
       </div>
-      <div>
-        <span>请假理由（必填）</span>
-        <textarea v-model="content" placeholder="请假理由不得少于35个字..."></textarea>
+      <div class="leave-main-textarea">
+        <span class="leave-main-label">请假理由（必填）</span>
+        <textarea class="leave-main-text" v-model="content" placeholder="请假理由不得少于35个字..."></textarea>
       </div>
     </div>
     <button @click="submit">提交请假申请</button>
@@ -25,6 +25,7 @@
 
 <script>
 import { applyLeave } from '../../api'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Leave',
@@ -33,6 +34,13 @@ export default {
       selectWeeks: 0,
       content: ''
     }
+  },
+  computed: {
+    ...mapState([
+      'groups',
+      'user_info',
+      'group_id'
+    ])
   },
   methods: {
     selectWeek (val) {
@@ -83,14 +91,68 @@ export default {
 </script>
 
 <style scoped>
+.leave {
+  color: #00479b;
+  font-weight: bold;
+  font-size: 18px;
+  position: relative;
+}
+.leave-container {
+  padding: 96px 0 0 59px;
+}
+.leave-main {
+  padding: 40px 30px;
+}
+.leave-main-info {
+  margin-bottom: 20px;
+}
+.leave-main-info > span{
+  margin-right: 40px;
+}
+.leave-main-info span:nth-of-type(1) {
+  margin-right: 0;
+}
+.leave-main-info span:nth-of-type(2) {
+  margin-right: 200px;
+}
+.leave-main-label {
+  display: inline-block;
+  width: 150px;
+  text-align: left;
+}
+.leave-main-select {
+  margin-bottom: 30px;
+}
 .btn-item {
-  border: 1px solid rgb(49, 199, 19);
+  border: 1px solid #00479b;
   padding: 3px 10px;
-  border-radius: 3px;
-  color: rgb(49, 199, 19);
+  border-radius: 5px;
+  color: #00479b;
+  font-size: 14px;
+  margin-right: 50px;
+  cursor: pointer;
+}
+.leave-main-textarea {
+  display: flex;
+  flex-direction: column;
+}
+.leave-main-text {
+  width: 60%;
+  resize: none;
+  height: 100px;
+  border: 1px solid #00479b;
+  border-radius: 2px;
+  margin-top: 30px;
+  color: #00479b;
+  font-weight: bold;
+  outline: none;
+}
+.leave-main-text::-webkit-input-placeholder {
+  color: #00479b;
+  font-weight: bold;
 }
 .active {
-  background: rgb(49, 199, 19);
+  background: #00479b;
   color: #fff;
 }
 </style>

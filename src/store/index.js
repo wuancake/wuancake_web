@@ -6,11 +6,20 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    groups: []
+    groups: [],
+    user_info: {
+      user_id: 1,
+      user_name: '二马',
+      status: 1
+    },
+    group_id: 1
   },
   mutations: {
     SET_GROUPS: (state, groups) => {
       state.groups = groups
+    },
+    SET_USER_INFO: (state, userInfo) => {
+      state.user_info = userInfo
     }
   },
   actions: {
@@ -21,6 +30,9 @@ const store = new Vuex.Store({
       commit('SET_GROUPS', groups.groups)
       return groups
     }
+    // async setUserInfo ({ commit }) {
+    //   const userInfo = await getUserInfo()
+    // }
   }
 })
 
