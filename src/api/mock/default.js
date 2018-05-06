@@ -69,4 +69,10 @@ export default function defaultRule (MockAdapter) {
       infoText: '请假成功',
       infoCode: 200
     })
+    .onPost('/group').reply(200, {
+      infoText: '分组选择成功',
+      infoCode: 200,
+      user_id: 1,
+      group_id: 5
+    })
 }

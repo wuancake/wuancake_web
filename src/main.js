@@ -9,6 +9,9 @@ import NProgress from 'nprogress' // 进度条
 import './common/styles/my-nprogress.css' // 自定义 progress 样式
 import 'normalize.css/normalize.css' // normalize.css 样式格式化
 import { Notification, MessageBox, Loading, Message, Icon } from 'element-ui'
+import iconSvg from './components/iconSvg' // icon-svg 组件
+
+Vue.component('icon-svg', iconSvg) // 全局注册 icon-svg 组件
 
 Vue.use(Loading.directive)
 Vue.use(Icon)

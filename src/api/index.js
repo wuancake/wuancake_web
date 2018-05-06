@@ -42,3 +42,12 @@ export function cancelLeave (params) { // 取消请假
     data: data
   })
 }
+
+export function saveGroup (params) { // 保存分组信息
+  const data = params
+  return fetch({
+    url: '/group',
+    method: 'post',
+    data: data
+  })
+}

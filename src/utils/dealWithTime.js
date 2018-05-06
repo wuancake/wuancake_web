@@ -7,9 +7,9 @@ export default () => {
 
   const time = {
     lave_days: day > 0 ? 7 - day : day,
-    lave_hours: hour > 0 ? 24 - hour : hour,
-    lave_minutes: minute > 0 ? 60 - minute : minute,
-    lave_seconds: second > 0 ? 60 - second : second
+    lave_hours: hour > 0 ? 23 - hour : hour,
+    lave_minutes: minute > 0 ? 59 - minute : minute,
+    lave_seconds: second > 0 ? 59 - second : second
   }
   return time
 }

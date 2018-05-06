@@ -93,20 +93,22 @@ export default {
 <style scoped>
 .leave {
   color: #00479b;
-  font-weight: bold;
   font-size: 18px;
   position: relative;
   display: flex;
   flex-direction: column;
 }
+.leave > p {
+  margin: 0;
+}
 .leave-container {
-  padding: 96px 0 0 59px;
+  padding: 96px 100px 0 59px;
 }
 .leave-main {
-  padding: 40px 30px;
+  padding: 40px 36px 86px 36px;
 }
 .leave-main-info {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 .leave-main-info > span{
   margin-right: 40px;
@@ -123,7 +125,7 @@ export default {
   text-align: left;
 }
 .leave-main-select {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 .btn-item {
   border: 1px solid #289dff;
@@ -139,19 +141,19 @@ export default {
   flex-direction: column;
 }
 .leave-main-text {
-  width: 60%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
   resize: none;
-  height: 150px;
-  border: 1px solid #00479b;
+  height: 140px;
+  border: 1px solid #7fa3cd;
   border-radius: 2px;
-  margin-top: 30px;
+  margin-top: 15px;
   color: #00479b;
-  font-weight: bold;
   outline: none;
 }
 .leave-main-text::-webkit-input-placeholder {
-  color: #289dff;
-  font-weight: bold;
+  color: #00479b;
 }
 .active {
   background: #289dff;

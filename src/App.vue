@@ -15,6 +15,7 @@ export default {
 </script>
 
 <style>
+@import url('./common/styles');
 html, body {
   height: 100%;
 }

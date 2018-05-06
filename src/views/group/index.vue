@@ -4,13 +4,14 @@
       <group-item v-for="item in groups" :key="item.id" :data="item" :activeNumber="activeNumber" @select="select"></group-item>
     </div>
     <span class="group-info"><i class="el-icon-info"></i> 警告：只能选择一次分组，请谨慎选择！</span>
-    <button class="submit">提交</button>
+    <button @click="submit" class="submit">提交</button>
   </div>
 </template>
 
 <script>
 import groupItem from './groupItem'
 import { mapState } from 'vuex'
+import { saveGroup } from '../../api'
 
 export default {
   name: 'group',
@@ -19,15 +20,41 @@ export default {
   },
   data () {
     return {
-      activeNumber: 1
+      activeNumber: 0
     }
   },
   computed: {
-    ...mapState(['groups'])
+    ...mapState(['groups', 'user_info'])
   },
   methods: {
     select (val) {
       this.activeNumber = val
+    },
+    submit () {
+      if (this.activeNumber === 0) {
+        this.$message({
+          message: '请选择分组后再提交！',
+          type: 'warning'
+        })
+      } else {
+        saveGroup({
+          user_id: this.user_info.user_id,
+          group_id: this.activeNumber
+        }).then(res => {
+          if (res.infoCode === 200) {
+            this.$notify.success({
+              title: '提交成功',
+              message: res.infoText
+            })
+            this.$router.push({ path: '/' })
+          } else {
+            this.$notify.error({
+              title: '提交失败',
+              message: res.infoText
+            })
+          }
+        })
+      }
     }
   }
 }
@@ -54,7 +81,7 @@ export default {
   margin-top: 42px;
   display: block;
   width: 75%;
-  color: #aaa;
+  color: orangered;
 }
 .submit {
   padding: 10px 100px;
