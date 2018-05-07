@@ -51,3 +51,12 @@ export function saveGroup (params) { // 保存分组信息
     data: data
   })
 }
+
+export function recoverPassword (params) { // 找回密码
+  const data = params
+  return fetch({
+    url: '/forget',
+    method: 'post',
+    data: data
+  })
+}
