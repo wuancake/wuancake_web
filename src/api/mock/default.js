@@ -75,4 +75,8 @@ export default function defaultRule (MockAdapter) {
       user_id: 1,
       group_id: 5
     })
+    .onPost('/forget').reply(200, {
+      infoText: '成功',
+      infoCode: 200
+    })
 }
