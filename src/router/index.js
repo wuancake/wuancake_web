@@ -7,6 +7,7 @@ import Leave from '@/views/leave'
 import Group from '@/views/group'
 import ChangePassword from '@/views/changePassword'
 import Eamil from '@/views/email'
+import Edit from '@/views/edit'
 
 Vue.use(Router)
 
@@ -87,6 +88,19 @@ export default new Router({
           component: Eamil,
           meta: {
             title: '找回密码 - 午安考勤'
+          }
+        }
+      ]
+    },
+    {
+      path: '/edit',
+      component: Layout,
+      children: [
+        {
+          path: '',
+          component: Edit,
+          meta: {
+            title: '撰写周报 - 午安考勤'
           }
         }
       ]

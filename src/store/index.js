@@ -12,6 +12,11 @@ const store = new Vuex.Store({
       user_name: '二马',
       status: 1
     },
+    group_info: {
+      id: 1,
+      name: '产品经理组'
+    },
+    state: null,
     group_id: 1
   },
   mutations: {
@@ -20,6 +25,9 @@ const store = new Vuex.Store({
     },
     SET_USER_INFO: (state, userInfo) => {
       state.user_info = userInfo
+    },
+    SET_STATE: (state, val) => {
+      state.state = val
     }
   },
   actions: {

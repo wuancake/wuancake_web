@@ -5,15 +5,15 @@
       <span>{{ weeklyStatusMessage }}</span>
     </p>
     <span>本周剩余时间</span>
-    <time class="time-left" v-if="weeklyStatus === 1"><strong>{{ laveTime.lave_days | digitsToDouble }}</strong>天<strong>{{ laveTime.lave_hours | digitsToDouble }}</strong>时<strong>{{ laveTime.lave_minutes | digitsToDouble }}</strong>分<strong>{{ laveTime.lave_seconds | digitsToDouble }}</strong>秒</time>
-    <span v-if="weeklyStatus === 2">周报已提交</span>
-    <span v-if="weeklyStatus === 3">本周已请假</span>
+    <time class="time-left" v-if="state === 1"><strong>{{ laveTime.lave_days | digitsToDouble }}</strong>天<strong>{{ laveTime.lave_hours | digitsToDouble }}</strong>时<strong>{{ laveTime.lave_minutes | digitsToDouble }}</strong>分<strong>{{ laveTime.lave_seconds | digitsToDouble }}</strong>秒</time>
+    <span v-if="state === 2">周报已提交</span>
+    <span v-if="state === 3">本周已请假</span>
     <span class="hint">{{ hint }}</span>
     <div class="btns">
-      <button v-if="weeklyStatus === 1">撰写周报</button>
-      <button v-if="weeklyStatus === 2 || weeklyStatus === 3">我的周报</button>
-      <button class="btn-second" v-if="weeklyStatus === 1" @click="applyLeave">申请请假</button>
-      <button  class="btn-second" @click="cancellationLeave" v-if="weeklyStatus === 3">取消请假</button>
+      <button @click="goEdit" v-if="state === 1">撰写周报</button>
+      <button v-if="state === 2 || state === 3">我的周报</button>
+      <button class="btn-second" v-if="state === 1" @click="applyLeave">申请请假</button>
+      <button  class="btn-second" @click="cancellationLeave" v-if="state === 3">取消请假</button>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@
 import nowWeek from '../../utils/nowWeek'
 import { getWeeklyStatus, cancelLeave } from '../../api'
 import dealWithTime from '../../utils/dealWithTime'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'home',
@@ -29,7 +30,6 @@ export default {
     return {
       message: 'this is homepage!',
       nowWeekNumber: null,
-      weeklyStatus: 1,
       laveTime: {
         lave_days: 0,
         lave_hours: 0,
@@ -46,7 +46,7 @@ export default {
   computed: {
     weeklyStatusMessage: function () {
       let message = ''
-      switch (this.weeklyStatus) {
+      switch (this.state) {
         case 1:
           message = '未撰写周报'
           break
@@ -64,7 +64,7 @@ export default {
     },
     hint: function () {
       let message = ''
-      switch (this.weeklyStatus) {
+      switch (this.state) {
         case 1:
           message = '时间不多了，抓紧提交周报哟！'
           break
@@ -79,11 +79,15 @@ export default {
           break
       }
       return message
-    }
+    },
+    ...mapState([
+      'state',
+      'user_info'
+    ])
   },
   mounted () {
-    this.getWeekNumbers()
     this.getWeekly()
+    this.getWeekNumbers()
     setInterval(() => {
       this.setTime()
     }, 1000)
@@ -97,8 +101,8 @@ export default {
       this.nowWeekNumber = nowWeek()
     },
     getWeekly () { // 获取周报状态
-      getWeeklyStatus(1).then(res => {
-        this.weeklyStatus = res.status
+      getWeeklyStatus(this.user_info.user_id).then(res => {
+        this.setState(res.status)
       })
     },
     setTime () { // 倒计时
@@ -110,9 +114,12 @@ export default {
     applyLeave () { // 跳转到申请请假页面
       this.$router.push({ path: '/leave' })
     },
+    goEdit () { // 跳转到撰写周报页面
+      this.$router.push({ path: '/edit' })
+    },
     cancel () { // 取消请假
       cancelLeave({
-        userId: 1
+        userId: this.user_info.user_id
       }).then(res => {
         if (res.infoCode === 200) {
           this.$notify.success({
@@ -133,7 +140,10 @@ export default {
           message: '取消请假未成功，请稍后再试'
         })
       })
-    }
+    },
+    ...mapMutations({
+      setState: 'SET_STATE'
+    })
   }
 }
 </script>

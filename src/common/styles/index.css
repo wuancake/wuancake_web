@@ -4,3 +4,25 @@
   fill: currentColor;
   overflow: hidden;
 }
+
+.default-container {
+  position: relative;
+  box-sizing: border-box;
+  padding: 96px 61px;
+  width: 100%;
+  height: 100%;
+}
+
+/* textarea default style */
+.el-textarea__inner {
+  border: 1px solid #00479b;
+  color: #00479b;
+  font-weight: bold;
+}
+.el-textarea__inner:hover {
+  border: 1px solid #00479b;
+}
+.el-textarea__inner::-webkit-input-placeholder {
+  color: #00479b;
+  font-weight: bold;
+}

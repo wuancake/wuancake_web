@@ -75,4 +75,8 @@ export default function defaultRule (MockAdapter) {
       user_id: 1,
       group_id: 5
     })
+    .onPost('/submit').reply(200, {
+      infoText: '成功提交周报',
+      infoCode: 200
+    })
 }
