@@ -11,7 +11,7 @@
     <span class="hint">{{ hint }}</span>
     <div class="btns">
       <button @click="goEdit" v-if="state === 1">撰写周报</button>
-      <button v-if="state === 2 || state === 3">我的周报</button>
+      <button @click="goWeeklys" v-if="state === 2 || state === 3">我的周报</button>
       <button class="btn-second" v-if="state === 1" @click="applyLeave">申请请假</button>
       <button  class="btn-second" @click="cancellationLeave" v-if="state === 3">取消请假</button>
     </div>
@@ -140,6 +140,9 @@ export default {
           message: '取消请假未成功，请稍后再试'
         })
       })
+    },
+    goWeeklys () {
+      this.$router.push({ path: '/weeklys' })
     },
     ...mapMutations({
       setState: 'SET_STATE'

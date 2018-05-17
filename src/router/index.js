@@ -8,6 +8,7 @@ import Group from '@/views/group'
 import ChangePassword from '@/views/changePassword'
 import Eamil from '@/views/email'
 import Edit from '@/views/edit'
+import Weeklys from '@/views/weeklys'
 
 Vue.use(Router)
 
@@ -101,6 +102,19 @@ export default new Router({
           component: Edit,
           meta: {
             title: '撰写周报 - 午安考勤'
+          }
+        }
+      ]
+    },
+    {
+      path: '/weeklys',
+      component: Layout,
+      children: [
+        {
+          path: '',
+          component: Weeklys,
+          meta: {
+            title: '周报详情 - 午安考勤'
           }
         }
       ]
