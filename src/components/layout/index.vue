@@ -38,5 +38,8 @@ export default {
 }
 .main {
   flex: 1;
+  background-image: url('/static/img/background.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 </style>

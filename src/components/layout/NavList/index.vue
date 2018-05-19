@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'NavList',
   data () {
@@ -43,13 +45,24 @@ export default {
           this.$router.push({ path: '/helloworld' })
           break
         case 3:
-          this.$router.push({ path: '/' })
+          this.logOutF()
           break
         default:
           this.$router.push({ path: '/' })
           break
       }
-    }
+    },
+    logOutF () {
+      this.logout()
+      this.$message({
+        message: '退出登录成功！',
+        type: 'success'
+      })
+      this.$router.push({ path: '/log' })
+    },
+    ...mapState({
+      logout: 'CLEAR'
+    })
   }
 }
 </script>

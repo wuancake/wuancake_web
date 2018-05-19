@@ -35,3 +35,16 @@
   color: #00479b;
   font-weight: bold;
 }
+
+/* el-input default style */
+.el-input__inner {
+  border: 0;
+  border-bottom: 1px solid #0565fe;
+  border-radius: 0;
+  width: 325px;
+  padding: 10px 5px;
+  color: #00479b;
+}
+.el-input__inner::-webkit-input-placeholder {
+  color: #00479b;
+}

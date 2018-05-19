@@ -79,4 +79,16 @@ export default function defaultRule (MockAdapter) {
       infoText: '成功提交周报',
       infoCode: 200
     })
+    .onPost('/regist').reply(200, {
+      infoText: '注册成功',
+      infoCode: 200,
+      user_id: 8,
+      group_id: 0
+    })
+    .onPost('/login').reply(200, {
+      infoText: '登录成功',
+      infoCode: 200,
+      user_id: 8,
+      group_id: 0
+    })
 }

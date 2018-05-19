@@ -68,3 +68,19 @@ export function saveWeekly (params) { // 保存周报
     data: params
   })
 }
+
+export function login (params) { // 注册
+  return fetch({
+    url: '/regist',
+    method: 'post',
+    data: params
+  })
+}
+
+export function log (params) {
+  return fetch({
+    url: '/login',
+    method: 'post',
+    data: params
+  })
+}

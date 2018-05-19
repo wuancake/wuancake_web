@@ -24,10 +24,15 @@ const store = new Vuex.Store({
       state.groups = groups
     },
     SET_USER_INFO: (state, userInfo) => {
-      state.user_info = userInfo
+      // state.user_info = userInfo
+      Object.assign(state.user_info, userInfo)
     },
     SET_STATE: (state, val) => {
       state.state = val
+    },
+    CLEAR: (state) => {
+      state.state = null
+      state.user_info = {}
     }
   },
   actions: {
@@ -38,9 +43,6 @@ const store = new Vuex.Store({
       commit('SET_GROUPS', groups.groups)
       return groups
     }
-    // async setUserInfo ({ commit }) {
-    //   const userInfo = await getUserInfo()
-    // }
   }
 })
 

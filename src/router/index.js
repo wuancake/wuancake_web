@@ -9,6 +9,8 @@ import ChangePassword from '@/views/changePassword'
 import Eamil from '@/views/email'
 import Edit from '@/views/edit'
 import Weeklys from '@/views/weeklys'
+import Login from '@/views/login'
+import Log from '@/views/login/login'
 
 Vue.use(Router)
 
@@ -118,6 +120,20 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: '/login',
+      component: Login,
+      meta: {
+        title: '注册 - 午安考勤'
+      }
+    },
+    {
+      path: '/log',
+      component: Log,
+      meta: {
+        title: '登录 - 午安考勤'
+      }
     }
   ]
 })
