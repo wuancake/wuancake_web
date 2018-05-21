@@ -44,7 +44,7 @@ export default {
       formData: {
         user_name: '',
         email: '',
-        QQ: '',
+        QQ: null,
         password: '',
         passwordT: ''
       },
@@ -69,9 +69,14 @@ export default {
   },
   methods: {
     submit () {
+      console.log('111')
       this.$refs.loginForm.validate(val => {
+        let params = this.formData
+        params.QQ = parseInt(params.QQ)
+        delete params.passwordT
+        console.log(params)
         if (val) {
-          login(this.formData).then(res => {
+          login(params).then(res => {
             if (res.infoCode === 200) {
               this.$message({
                 message: '恭喜你，注册成功！',
