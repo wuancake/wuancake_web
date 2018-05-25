@@ -25,7 +25,7 @@
 
 <script>
 import { login } from '../../api'
-import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Login',
@@ -69,15 +69,13 @@ export default {
   },
   methods: {
     submit () {
-      console.log('111')
       this.$refs.loginForm.validate(val => {
         let params = this.formData
         params.QQ = parseInt(params.QQ)
         delete params.passwordT
-        console.log(params)
         if (val) {
           login(params).then(res => {
-            if (res.infoCode === 200) {
+            if (res.infoCode === 200 || res.infoCode === '200') {
               this.$message({
                 message: '恭喜你，注册成功！',
                 type: 'success'
@@ -112,7 +110,7 @@ export default {
     to () {
       this.$router.push({ path: '/log' })
     },
-    ...mapState({
+    ...mapMutations({
       setUserInfo: 'SET_USER_INFO'
     })
   }

@@ -6,7 +6,8 @@ import { MessageBox, Notification } from 'element-ui'
 // 创建 axios 实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
-  timeout: 5000 // 请求时间
+  timeout: 5000, // 请求时间
+  headers: {'Content-Type': 'application/json'}
 })
 
 // request 拦截器

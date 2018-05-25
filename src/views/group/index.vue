@@ -10,7 +10,7 @@
 
 <script>
 import groupItem from './groupItem'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import { saveGroup } from '../../api'
 
 export default {
@@ -41,10 +41,20 @@ export default {
           user_id: this.user_info.user_id,
           group_id: this.activeNumber
         }).then(res => {
-          if (res.infoCode === 200) {
+          if (res.infoCode === 200 || res.infoCode === '200') {
             this.$notify.success({
               title: '提交成功',
               message: res.infoText
+            })
+            let name = null
+            this.groups.forEach(element => {
+              if (element.id === res.group_id) {
+                name = element.group_name
+              }
+            })
+            this.setUserInfo({
+              group_id: res.group_id,
+              group_name: name
             })
             this.$router.push({ path: '/' })
           } else {
@@ -55,7 +65,10 @@ export default {
           }
         })
       }
-    }
+    },
+    ...mapMutations({
+      setUserInfo: 'SET_USER_INFO'
+    })
   }
 }
 </script>

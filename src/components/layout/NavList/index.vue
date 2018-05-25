@@ -3,8 +3,8 @@
     <div class="user">
       <img src="/static/img/logo.png" alt="" class="uer-avator">
       <div class="user-info">
-        <span>二马</span>
-        <span>产品经理组</span>
+        <span>{{ user_info.user_name }}</span>
+        <span>{{ user_info.group_name }}</span>
       </div>
     </div>
     <ul class="menu">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'NavList',
@@ -34,20 +34,33 @@ export default {
       active: 1
     }
   },
+  computed: {
+    ...mapState(['user_info'])
+  },
   methods: {
     change (val) {
-      this.active = val
       switch (val) {
         case 1:
+          this.active = val
           this.$router.push({ path: '/' })
           break
         case 2:
-          this.$router.push({ path: '/helloworld' })
+          if (this.user_info.group_id === 0) {
+            this.$message({
+              message: '请先选择分组再进行次操作！',
+              type: 'warning'
+            })
+          } else {
+            this.active = val
+            this.$router.push({ path: '/weeklys' })
+          }
           break
         case 3:
+          this.active = val
           this.logOutF()
           break
         default:
+          this.active = val
           this.$router.push({ path: '/' })
           break
       }
@@ -60,7 +73,7 @@ export default {
       })
       this.$router.push({ path: '/log' })
     },
-    ...mapState({
+    ...mapMutations({
       logout: 'CLEAR'
     })
   }
