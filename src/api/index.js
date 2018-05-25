@@ -16,7 +16,7 @@ export function getGroupsInfo () { // 获取分组信息
 
 export function getWeeklyStatus (uid) { // 获取周报状态
   const data = {
-    user_id: 1
+    user_id: uid
   }
   return fetch({
     url: '/main',
@@ -80,6 +80,14 @@ export function login (params) { // 注册
 export function log (params) {
   return fetch({
     url: '/login',
+    method: 'post',
+    data: params
+  })
+}
+
+export function weeklys (params) { // 获取周报列表
+  return fetch({
+    url: '/myweekly',
     method: 'post',
     data: params
   })

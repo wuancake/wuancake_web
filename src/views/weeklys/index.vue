@@ -21,6 +21,9 @@
 </template>
 
 <script>
+import { weeklys } from '../../api'
+import { mapState } from 'vuex'
+
 export default {
   name: 'weeklys',
   data () {
@@ -40,7 +43,27 @@ export default {
           state: 1,
           time: '2018-09-09'
         }
-      ]
+      ],
+      pageNum: 1,
+      weekNum: 5
+    }
+  },
+  computed: {
+    ...mapState(['user_info'])
+  },
+  mounted () {
+    this.getList()
+  },
+  methods: {
+    getList () {
+      weeklys({
+        userId: 1 || this.user_info.user_id,
+        groupId: 2 || this.user_info.group_id,
+        pageNum: 1,
+        weekNum: 5
+      }).then(res => {
+        console.log(res)
+      })
     }
   }
 }
