@@ -101,6 +101,7 @@ export default {
       this.nowWeekNumber = nowWeek()
     },
     getWeekly () { // 获取周报状态
+      console.log(typeof this.user_info.user_id)
       getWeeklyStatus(this.user_info.user_id).then(res => {
         this.setState(res.status)
       })

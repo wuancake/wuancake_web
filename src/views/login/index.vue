@@ -7,8 +7,8 @@
       <el-form-item prop="email">
         <el-input type="text" v-model="formData.email" placeholder="电子邮箱"></el-input>
       </el-form-item>
-      <el-form-item prop="QQ">
-        <el-input type="text" v-model="formData.QQ" placeholder="QQ"></el-input>
+      <el-form-item prop="qq">
+        <el-input type="text" v-model="formData.qq" placeholder="qq"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input :type="type" v-model="formData.password" placeholder="密码"></el-input>
@@ -44,7 +44,7 @@ export default {
       formData: {
         user_name: '',
         email: '',
-        QQ: null,
+        qq: null,
         password: '',
         passwordT: ''
       },
@@ -55,8 +55,8 @@ export default {
         email: [
           { required: true, message: '邮箱为必填项', trigger: 'blur' }
         ],
-        QQ: [
-          { required: true, message: 'QQ 为必填项', trigger: 'blur' }
+        qq: [
+          { required: true, message: 'qq 为必填项', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '密码为必填项', trigger: 'blur' }
@@ -71,7 +71,7 @@ export default {
     submit () {
       this.$refs.loginForm.validate(val => {
         let params = this.formData
-        params.QQ = parseInt(params.QQ)
+        params.qq = parseInt(params.qq)
         delete params.passwordT
         if (val) {
           login(params).then(res => {
