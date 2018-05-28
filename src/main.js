@@ -10,6 +10,7 @@ import './common/styles/my-nprogress.css' // 自定义 progress 样式
 import 'normalize.css/normalize.css' // normalize.css 样式格式化
 import { Notification, MessageBox, Loading, Message, Icon, Input, Form, FormItem, Table, TableColumn, Pagination } from 'element-ui'
 import iconSvg from './components/iconSvg' // icon-svg 组件
+import local from './utils/localStorage'
 
 Vue.component('icon-svg', iconSvg) // 全局注册 icon-svg 组件
 
@@ -32,6 +33,9 @@ Vue.prototype.$message = Message
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
+  if (local.getItem('user_info')) { // 根据 localStorage 跳转路由
+
+  }
   if (to.meta.title) {
     document.title = to.meta.title // 基于路由信息设置 title
   }

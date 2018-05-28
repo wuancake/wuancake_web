@@ -1,7 +1,7 @@
 <template>
   <div class="group-item" @click="select">
     <span class="btn" :class="{ 'btn-active': activeNumber === data.id }"></span>
-    <span class="label">{{ data.group_name }}</span>
+    <span class="label">{{ data.groupName }}</span>
   </div>
 </template>
 

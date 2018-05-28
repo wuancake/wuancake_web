@@ -49,7 +49,7 @@ export default {
             let name = null
             this.groups.forEach(element => {
               if (element.id === res.group_id) {
-                name = element.group_name
+                name = element.groupName
               }
             })
             this.setUserInfo({

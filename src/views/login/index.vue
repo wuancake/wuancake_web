@@ -1,14 +1,14 @@
 <template>
   <div class="login">
     <el-form :model="formData" :rules="rules" ref="loginForm">
-      <el-form-item prop="user_name">
-        <el-input type="text" v-model="formData.user_name" placeholder="用户名"></el-input>
+      <el-form-item prop="userName">
+        <el-input type="text" v-model="formData.userName" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="email">
         <el-input type="text" v-model="formData.email" placeholder="电子邮箱"></el-input>
       </el-form-item>
-      <el-form-item prop="qq">
-        <el-input type="text" v-model="formData.qq" placeholder="qq"></el-input>
+      <el-form-item prop="QQ">
+        <el-input type="text" v-model="formData.QQ" placeholder="QQ"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <el-input :type="type" v-model="formData.password" placeholder="密码"></el-input>
@@ -42,21 +42,21 @@ export default {
     return {
       type: 'password',
       formData: {
-        user_name: '',
+        userName: '',
         email: '',
-        qq: null,
+        QQ: null,
         password: '',
         passwordT: ''
       },
       rules: {
-        user_name: [
+        userName: [
           { required: true, message: '用户名不能为空', trigger: 'blur' }
         ],
         email: [
           { required: true, message: '邮箱为必填项', trigger: 'blur' }
         ],
-        qq: [
-          { required: true, message: 'qq 为必填项', trigger: 'blur' }
+        QQ: [
+          { required: true, message: 'QQ 为必填项', trigger: 'blur' }
         ],
         password: [
           { required: true, message: '密码为必填项', trigger: 'blur' }
@@ -71,7 +71,7 @@ export default {
     submit () {
       this.$refs.loginForm.validate(val => {
         let params = this.formData
-        params.qq = parseInt(params.qq)
+        // params.QQ = parseInt(params.QQ)
         delete params.passwordT
         if (val) {
           login(params).then(res => {
@@ -83,7 +83,7 @@ export default {
               this.setUserInfo({
                 user_id: res.user_id,
                 group_id: res.group_id,
-                user_name: res.user_name
+                user_name: res.userName
               })
               this.$router.push({ path: '/group' })
             } else {
