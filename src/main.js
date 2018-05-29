@@ -33,13 +33,21 @@ Vue.prototype.$message = Message
 
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  if (local.getItem('user_info')) { // 根据 localStorage 跳转路由
-
-  }
   if (to.meta.title) {
     document.title = to.meta.title // 基于路由信息设置 title
   }
-  next()
+
+  // 根据 localStorage 调转路由
+  const user = local.getItem('user_info') ? JSON.parse(local.getItem('user_info')) : {}
+  if (user.user_name && user.user_id) {
+    next()
+  } else {
+    if (to.path === '/log' || to.path === '/login') {
+      next()
+    } else {
+      next('/log')
+    }
+  }
 })
 
 router.afterEach(() => {

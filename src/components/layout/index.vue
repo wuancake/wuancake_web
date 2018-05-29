@@ -19,9 +19,10 @@ export default {
   },
   mounted () {
     this.setGroups()
+    this.setUserInfo()
   },
   methods: {
-    ...mapActions(['setGroups'])
+    ...mapActions(['setGroups', 'setUserInfo'])
   }
 }
 </script>

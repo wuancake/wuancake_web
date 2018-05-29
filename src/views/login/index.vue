@@ -81,8 +81,8 @@ export default {
                 type: 'success'
               })
               this.setUserInfo({
-                user_id: res.user_id,
-                group_id: res.group_id,
+                user_id: res.userId,
+                group_id: res.groupId,
                 user_name: res.userName
               })
               this.$router.push({ path: '/group' })

@@ -19,10 +19,12 @@ const store = new Vuex.Store({
   mutations: {
     SET_GROUPS: (state, groups) => {
       state.groups = groups
+      local.setItem('groups', groups.groups)
     },
     SET_USER_INFO: (state, userInfo) => {
       // Object.assign(state.user_info, userInfo)
       const newVal = Object.assign({}, state.user_info, userInfo)
+      console.log(newVal)
       state.user_info = newVal // 这样才能保证页面数据动态展示，vue推荐更改键值对时全部覆盖，而不是像上一行注释代码那样操作（页面数据不会动态更新）。
       local.setItem('user_info', newVal)
     },
@@ -44,11 +46,14 @@ const store = new Vuex.Store({
       if (!local.getItem('groups')) {
         const groups = await getGroupsInfo()
         arr = groups.groups
-        local.setItem('groups', groups.groups)
       } else {
-        arr = JSON.parse(local.getItem('groups'))
+        arr = local.getItem('groups')
       }
       commit('SET_GROUPS', arr)
+    },
+    async setUserInfo ({ commit }) {
+      const obj = local.getItem('user_info')
+      commit('SET_USER_INFO', obj)
     }
   }
 })
