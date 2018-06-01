@@ -3,11 +3,11 @@ class Local {
     this.storage = window.localStorage
   }
   getItem (key) {
-    // return JSON.parse(this.storage.getItem(key))
     return this.storage.getItem(key)
   }
   setItem (key, val) {
-    this.storage.setItem(key, JSON.stringify(val))
+    const a = JSON.stringify(val)
+    this.storage.setItem(key, a)
   }
   clear () {
     this.storage.clear()
