@@ -38,8 +38,8 @@ export default {
         })
       } else {
         saveGroup({
-          user_id: this.user_info.user_id,
-          group_id: this.activeNumber
+          userId: this.user_info.user_id,
+          groupId: this.activeNumber
         }).then(res => {
           if (res.infoCode === 200 || res.infoCode === '200') {
             this.$notify.success({
@@ -48,12 +48,12 @@ export default {
             })
             let name = null
             this.groups.forEach(element => {
-              if (element.id === res.group_id) {
+              if (element.id === res.groupId) {
                 name = element.groupName
               }
             })
             this.setUserInfo({
-              group_id: res.group_id,
+              group_id: res.groupId,
               group_name: name
             })
             this.$router.push({ path: '/' })

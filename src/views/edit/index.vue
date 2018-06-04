@@ -3,10 +3,10 @@
     <header>周报撰写</header>
     <div class="edit-main">
       <div class="edit-main-info">
-        <span>{{ group_info.name }}</span>
+        <span>{{ user_info.group_name }}</span>
         <span>{{ user_info.user_name }}</span>
         <span>提交状态</span>
-        <span>{{ state | checkState }}</span>
+        <span>{{ user_info.state | checkState }}</span>
       </div>
       <edit-item title="本周完成任务（必填）" @change="changeOne"></edit-item>
       <edit-item title="本周遇到问题（必填）" @change="changeTwo"></edit-item>
@@ -38,12 +38,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'group_id',
-      'group_info',
-      'user_info',
-      'state'
-    ])
+    ...mapState(['user_info'])
   },
   methods: {
     ...mapMutations({

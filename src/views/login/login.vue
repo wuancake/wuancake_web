@@ -16,7 +16,7 @@
 
 <script>
 import { log } from '../../api'
-import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'log',
@@ -45,20 +45,21 @@ export default {
       this.$refs.loginForm.validate(val => {
         if (val) {
           log(this.formData).then(res => {
-            if (res.infoCode === 200) {
+            if (res.infoCode === 200 || res.infoCode === '200') {
               this.$message({
                 message: '恭喜你，登录成功！',
                 type: 'success'
               })
               this.setUserInfo({
-                user_id: res.user_id,
-                group_id: res.group_id
+                user_id: res.userId,
+                group_id: res.groupId,
+                user_name: res.userName
               })
               this.$router.push({ path: '/' })
             } else {
               this.$notify.error({
                 title: '登录失败',
-                message: '登录失败，请重试！'
+                message: res.infoText
               })
             }
           })
@@ -77,7 +78,7 @@ export default {
         this.type = 'password'
       }
     },
-    ...mapState({
+    ...mapMutations({
       setUserInfo: 'SET_USER_INFO'
     })
   }

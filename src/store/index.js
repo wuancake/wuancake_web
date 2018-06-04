@@ -13,13 +13,13 @@ const store = new Vuex.Store({
       // group_id: 0,
       // user_name: '二马',
       // group_name: '...',
-      // status: 1
+      // state: 1
     }
   },
   mutations: {
     SET_GROUPS: (state, groups) => {
       state.groups = groups
-      local.setItem('groups', groups.groups)
+      local.setItem('groups', groups)
     },
     SET_USER_INFO: (state, userInfo) => {
       const newVal = Object.assign({}, state.user_info, userInfo)
@@ -45,7 +45,7 @@ const store = new Vuex.Store({
         const groups = await getGroupsInfo()
         arr = groups.groups
       } else {
-        arr = local.getItem('groups')
+        arr = JSON.parse(local.getItem('groups'))
       }
       commit('SET_GROUPS', arr)
     },

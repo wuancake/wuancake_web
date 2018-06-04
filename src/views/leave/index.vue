@@ -3,7 +3,7 @@
     <p>请假申请</p>
     <div class="leave-main">
       <div class="leave-main-info">
-        <span class="leave-main-label">{{ groups[group_id].group_name }}</span>
+        <span class="leave-main-label">{{ user_info.group_name }}</span>
         <span>{{ user_info.user_name }}</span>
         <span>请假状态</span>
         <span>未请假</span>
@@ -25,7 +25,7 @@
 
 <script>
 import { applyLeave } from '../../api'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Leave',
@@ -36,11 +36,7 @@ export default {
     }
   },
   computed: {
-    ...mapState([
-      'groups',
-      'user_info',
-      'group_id'
-    ])
+    ...mapState(['user_info'])
   },
   methods: {
     selectWeek (val) {
@@ -71,6 +67,7 @@ export default {
             title: '申请成功',
             message: '申请请假成功'
           })
+          this.setState(3)
           this.$router.push({ path: '/' })
         } else {
           this.$notify.warning({
@@ -85,7 +82,10 @@ export default {
           message: '申请请假未能成功，请稍后再试'
         })
       })
-    }
+    },
+    ...mapMutations({
+      setState: 'SET_STATE'
+    })
   }
 }
 </script>

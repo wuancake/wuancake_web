@@ -39,6 +39,7 @@ router.beforeEach((to, from, next) => {
 
   // 根据 localStorage 调转路由
   const user = local.getItem('user_info') ? JSON.parse(local.getItem('user_info')) : {}
+  store.state.user_info = user
   if (user.user_name && user.user_id) {
     next()
   } else {

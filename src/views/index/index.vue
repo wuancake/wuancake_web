@@ -4,16 +4,16 @@
       <span>本周第{{ nowWeekNumber }}周</span>
       <span>{{ weeklyStatusMessage }}</span>
     </p>
-    <span>本周剩余时间</span>
-    <time class="time-left" v-if="state === 1"><strong>{{ laveTime.lave_days | digitsToDouble }}</strong>天<strong>{{ laveTime.lave_hours | digitsToDouble }}</strong>时<strong>{{ laveTime.lave_minutes | digitsToDouble }}</strong>分<strong>{{ laveTime.lave_seconds | digitsToDouble }}</strong>秒</time>
-    <span v-if="state === 2">周报已提交</span>
-    <span v-if="state === 3">本周已请假</span>
+    <span v-if="user_info.state === 1">本周剩余时间</span>
+    <time class="time-left" v-if="user_info.state === 1"><strong>{{ laveTime.lave_days | digitsToDouble }}</strong>天<strong>{{ laveTime.lave_hours | digitsToDouble }}</strong>时<strong>{{ laveTime.lave_minutes | digitsToDouble }}</strong>分<strong>{{ laveTime.lave_seconds | digitsToDouble }}</strong>秒</time>
+    <span class="time-left" v-if="user_info.state === 2">周报已提交</span>
+    <span class="time-left" v-if="user_info.state === 3">本周已请假</span>
     <span class="hint">{{ hint }}</span>
     <div class="btns">
-      <button @click="goEdit" v-if="state === 1">撰写周报</button>
-      <button @click="goWeeklys" v-if="state === 2 || state === 3">我的周报</button>
-      <button class="btn-second" v-if="state === 1" @click="applyLeave">申请请假</button>
-      <button  class="btn-second" @click="cancellationLeave" v-if="state === 3">取消请假</button>
+      <button @click="goEdit" v-if="user_info.state === 1">撰写周报</button>
+      <button @click="goWeeklys" v-if="user_info.state === 2 || user_info.state === 3">我的周报</button>
+      <button class="btn-second" v-if="user_info.state === 1" @click="applyLeave">申请请假</button>
+      <button  class="btn-second" @click="cancellationLeave" v-if="user_info.state === 3">取消请假</button>
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
   computed: {
     weeklyStatusMessage: function () {
       let message = ''
-      switch (this.state) {
+      switch (this.user_info.state) {
         case 1:
           message = '未撰写周报'
           break
@@ -64,7 +64,7 @@ export default {
     },
     hint: function () {
       let message = ''
-      switch (this.state) {
+      switch (this.user_info.state) {
         case 1:
           message = '时间不多了，抓紧提交周报哟！'
           break
@@ -81,7 +81,6 @@ export default {
       return message
     },
     ...mapState([
-      'state',
       'user_info'
     ])
   },
@@ -92,7 +91,14 @@ export default {
       this.setTime()
     }, 1000)
   },
-  destroyed () {},
+  // watch: {
+  //   'user_info': function (val1, val2) {
+  //     console.log(val1, val2)
+  //     if (val1.state !== val2.state) {
+  //       this.getWeekly()
+  //     }
+  //   }
+  // },
   methods: {
     toHelloWorld () {
       this.$router.push({ path: '/helloworld' })
@@ -101,7 +107,6 @@ export default {
       this.nowWeekNumber = nowWeek()
     },
     getWeekly () { // 获取周报状态
-      console.log(typeof this.user_info.user_id)
       getWeeklyStatus(this.user_info.user_id).then(res => {
         this.setState(res.status)
       })
