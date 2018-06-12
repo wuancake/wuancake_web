@@ -71,7 +71,6 @@ export default {
     submit () {
       this.$refs.loginForm.validate(val => {
         let params = this.formData
-        // params.QQ = parseInt(params.QQ)
         delete params.passwordT
         if (val) {
           login(params).then(res => {
@@ -89,7 +88,7 @@ export default {
             } else {
               this.$notify.error({
                 title: '注册失败',
-                message: '注册失败，请重试！'
+                message: res.infoText
               })
             }
           })
@@ -126,6 +125,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url('/static/img/background.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .submit {
   color: #0565fe;

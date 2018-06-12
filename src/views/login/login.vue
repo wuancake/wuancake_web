@@ -93,6 +93,9 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url('/static/img/background.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .submit {
   color: #0565fe;

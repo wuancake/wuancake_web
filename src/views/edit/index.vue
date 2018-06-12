@@ -71,18 +71,25 @@ export default {
       if (this.complete && this.trouble && this.plane) {
         saveWeekly({
           userId: this.user_info.user_id,
-          groupId: this.group_id,
+          groupId: this.user_info.group_id,
           complete: this.complete,
           trouble: this.trouble,
           plane: this.plane,
           url: this.url
         }).then(res => {
-          this.$notify.success({
-            title: '提交成功',
-            message: res.infoText
-          })
-          this.setState(2)
-          this.$router.push({ path: '/' })
+          if (res.infoCode === 200 || res.infoCode === '200') {
+            this.$notify.success({
+              title: '提交成功',
+              message: res.infoText
+            })
+            this.setState(2)
+            this.$router.push({ path: '/' })
+          } else {
+            this.$notify.error({
+              title: '提交失败',
+              message: res.infoText
+            })
+          }
         })
       }
     }

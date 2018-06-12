@@ -1,5 +1,5 @@
 <template>
-  <div class="home home-container">
+  <div v-loading="loading" class="home home-container">
     <p>
       <span>本周第{{ nowWeekNumber }}周</span>
       <span>{{ weeklyStatusMessage }}</span>
@@ -29,6 +29,7 @@ export default {
   data () {
     return {
       message: 'this is homepage!',
+      loading: false,
       nowWeekNumber: null,
       laveTime: {
         lave_days: 0,
@@ -91,14 +92,6 @@ export default {
       this.setTime()
     }, 1000)
   },
-  // watch: {
-  //   'user_info': function (val1, val2) {
-  //     console.log(val1, val2)
-  //     if (val1.state !== val2.state) {
-  //       this.getWeekly()
-  //     }
-  //   }
-  // },
   methods: {
     toHelloWorld () {
       this.$router.push({ path: '/helloworld' })
@@ -107,8 +100,10 @@ export default {
       this.nowWeekNumber = nowWeek()
     },
     getWeekly () { // 获取周报状态
+      this.loading = true
       getWeeklyStatus(this.user_info.user_id).then(res => {
         this.setState(res.status)
+        this.loading = false
       })
     },
     setTime () { // 倒计时
