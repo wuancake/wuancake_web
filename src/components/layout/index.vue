@@ -41,6 +41,6 @@ export default {
   flex: 1;
   background-image: url('/static/img/background1.png');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 </style>

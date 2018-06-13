@@ -127,7 +127,7 @@ export default {
   align-items: center;
   background-image: url('/static/img/background.png');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 .submit {
   color: #0565fe;

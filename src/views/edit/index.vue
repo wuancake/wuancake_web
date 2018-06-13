@@ -33,7 +33,7 @@ export default {
       complete: null,
       trouble: null,
       plane: null,
-      url: null,
+      url: '',
       noSubmit: true
     }
   },

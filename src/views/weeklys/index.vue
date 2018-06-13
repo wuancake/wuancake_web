@@ -17,7 +17,22 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="周报" prop="text" header-align="center"></el-table-column>
+        <el-table-column label="周报" prop="text" header-align="center">
+          <template slot-scope="scope">
+            <div v-if="scope.row.status === 2" class="weekly-content">
+              <span>本周完成：{{ scope.row.complete }}</span>
+              <span>所遇问题：{{ scope.row.trouble }}</span>
+              <span>下周计划：{{ scope.row.plane }}</span>
+              <span v-if="scope.row.url">作品链接：{{ scope.row.url }}</span>
+            </div>
+            <div class="no-content" v-if="scope.row.status === 1">
+              <span>无</span>
+            </div>
+            <div v-if="scope.row.status === 3" class="weekly-content">
+              <span>申请请假：{{ scope.row.reason }}</span>
+            </div>
+          </template>
+        </el-table-column>
         <el-table-column label="周报状态" prop="status" header-align="center">
           <template slot-scope="scope">
             <div class="deal-time">
@@ -27,9 +42,12 @@
         </el-table-column>
         <el-table-column label="提交时间" prop="replyTime" header-align="center">
           <template slot-scope="scope">
-            <div class="deal-time">
+            <div v-if="scope.row.status !== 1" class="deal-time">
               <span>{{ scope.row.replyTime | dealBackTime }}</span>
               <span>{{ scope.row.replyTime | dealBackDate }}</span>
+            </div>
+            <div v-else class="no-content">
+              <span>无</span>
             </div>
           </template>
         </el-table-column>
@@ -106,6 +124,15 @@ export default {
 .deal-time {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.weekly-content {
+  display: flex;
+  flex-direction: column;
+}
+.no-content {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 </style>

@@ -50,12 +50,21 @@ export default {
                 message: '恭喜你，登录成功！',
                 type: 'success'
               })
-              this.setUserInfo({
-                user_id: res.userId,
-                group_id: res.groupId,
-                user_name: res.userName
-              })
-              this.$router.push({ path: '/' })
+              if (res.groupId === 0) {
+                this.setUserInfo({
+                  user_id: res.userId,
+                  group_id: res.groupId
+                })
+                this.$router.push({ path: '/group' })
+              } else {
+                this.setUserInfo({
+                  user_id: res.userId,
+                  group_id: res.groupId,
+                  user_name: res.userName,
+                  group_name: res.groupName
+                })
+                this.$router.push({ path: '/' })
+              }
             } else {
               this.$notify.error({
                 title: '登录失败',
@@ -95,7 +104,7 @@ export default {
   align-items: center;
   background-image: url('/static/img/background.png');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 .submit {
   color: #0565fe;
