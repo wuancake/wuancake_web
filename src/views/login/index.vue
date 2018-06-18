@@ -70,8 +70,13 @@ export default {
   methods: {
     submit () {
       this.$refs.loginForm.validate(val => {
-        let params = this.formData
-        delete params.passwordT
+        const { userName, email, QQ, password } = this.formData
+        let params = {
+          userName,
+          email,
+          QQ,
+          password
+        }
         if (val) {
           login(params).then(res => {
             if (res.infoCode === 200 || res.infoCode === '200') {
