@@ -110,7 +110,14 @@ export default {
       this.laveTime = dealWithTime()
     },
     cancellationLeave () {
-
+      cancelLeave({
+        userId: this.user_info.user_id,
+        groupId: this.user_info.group_id
+      }).then(res => {
+        if (res.infoCode === 200) {
+          this.setState(1)
+        }
+      })
     },
     applyLeave () { // 跳转到申请请假页面
       this.$router.push({ path: '/leave' })

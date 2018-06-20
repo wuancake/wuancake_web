@@ -58,9 +58,10 @@ export default {
         return
       }
       applyLeave({
-        userId: 1,
-        week_num: this.selectWeeks,
-        reason: this.content
+        userId: this.user_info.user_id,
+        weekNum: this.selectWeeks,
+        reason: this.content,
+        groupId: this.user_info.group_id
       }).then(res => {
         if (res.infoCode === 200) {
           this.$notify.success({

@@ -29,7 +29,7 @@
               <span>无</span>
             </div>
             <div v-if="scope.row.status === 3" class="weekly-content">
-              <span>申请请假：{{ scope.row.reason }}</span>
+              <span>申请请假：{{ scope.row.text }}</span>
             </div>
           </template>
         </el-table-column>

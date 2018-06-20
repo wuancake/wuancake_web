@@ -3,7 +3,7 @@
     <div class="user">
       <img src="/static/img/logo.png" alt="" class="uer-avator">
       <div class="user-info">
-        <span>{{ user_info.user_name }}</span>
+        <span>{{ user_info.user_name | dealText }}</span>
         <span>{{ user_info.group_name }}</span>
       </div>
     </div>
@@ -76,6 +76,11 @@ export default {
     ...mapMutations({
       logout: 'CLEAR'
     })
+  },
+  filters: {
+    dealText (val) {
+      return val.length > 6 ? `${val.slice(0, 6)}...` : val
+    }
   }
 }
 </script>
