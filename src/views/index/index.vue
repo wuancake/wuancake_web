@@ -2,13 +2,13 @@
   <div v-loading="loading" class="home home-container">
     <p>
       <span>本周第{{ nowWeekNumber }}周</span>
-      <span>{{ weeklyStatusMessage }}</span>
+      <span>{{ user_info.state | weeklyStatusMessage }}</span>
     </p>
     <span v-if="user_info.state === 1">本周剩余时间</span>
     <time class="time-left" v-if="user_info.state === 1"><strong>{{ laveTime.lave_days | digitsToDouble }}</strong>天<strong>{{ laveTime.lave_hours | digitsToDouble }}</strong>时<strong>{{ laveTime.lave_minutes | digitsToDouble }}</strong>分<strong>{{ laveTime.lave_seconds | digitsToDouble }}</strong>秒</time>
     <span class="time-left" v-if="user_info.state === 2">周报已提交</span>
     <span class="time-left" v-if="user_info.state === 3">本周已请假</span>
-    <span class="hint">{{ hint }}</span>
+    <span class="hint">{{ user_info.state | hint }}</span>
     <div class="btns">
       <button @click="goEdit" v-if="user_info.state === 1">撰写周报</button>
       <button @click="goWeeklys" v-if="user_info.state === 2 || user_info.state === 3">我的周报</button>
@@ -42,12 +42,10 @@ export default {
   filters: {
     digitsToDouble: (value) => {
       return value > 9 ? value : '0' + value
-    }
-  },
-  computed: {
-    weeklyStatusMessage: function () {
+    },
+    weeklyStatusMessage: (value) => {
       let message = ''
-      switch (this.user_info.state) {
+      switch (value) {
         case 1:
           message = '未撰写周报'
           break
@@ -63,9 +61,9 @@ export default {
       }
       return message
     },
-    hint: function () {
+    hint: (value) => {
       let message = ''
-      switch (this.user_info.state) {
+      switch (value) {
         case 1:
           message = '时间不多了，抓紧提交周报哟！'
           break
@@ -80,7 +78,9 @@ export default {
           break
       }
       return message
-    },
+    }
+  },
+  computed: {
     ...mapState([
       'user_info'
     ])
