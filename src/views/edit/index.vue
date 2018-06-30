@@ -1,5 +1,5 @@
 <template>
-  <div class="edit default-container">
+  <div v-loading="loading" class="edit default-container">
     <header>周报撰写</header>
     <div class="edit-main">
       <div class="edit-main-info">
@@ -8,10 +8,10 @@
         <span>提交状态</span>
         <span>{{ user_info.state | checkState }}</span>
       </div>
-      <edit-item title="本周完成任务（必填）" @change="changeOne"></edit-item>
-      <edit-item title="本周遇到问题（必填）" @change="changeTwo"></edit-item>
-      <edit-item title="下周计划（必填）" @change="changeThree"></edit-item>
-      <edit-item title="作品链接" @change="changeFour" row="1"></edit-item>
+      <edit-item title="本周完成任务（必填）" :note="complete" @change="changeOne"></edit-item>
+      <edit-item title="本周遇到问题（必填）" :note="trouble" @change="changeTwo"></edit-item>
+      <edit-item title="下周计划（必填）" :note="plane" @change="changeThree"></edit-item>
+      <edit-item title="作品链接" :note="url" @change="changeFour" row="1"></edit-item>
     </div>
     <footer class="edit-footer">
       <button :disabled="noSubmit" class="submit" @click="save">提交周报</button>
@@ -23,6 +23,7 @@
 import EditItem from './editItem'
 import { saveWeekly } from '../../api'
 import { mapState, mapMutations } from 'vuex'
+import local from '../../utils/localStorage.js'
 export default {
   name: 'Edit',
   components: {
@@ -34,15 +35,17 @@ export default {
       trouble: null,
       plane: null,
       url: '',
-      noSubmit: true
+      noSubmit: true,
+      loading: false
     }
   },
   computed: {
-    ...mapState(['user_info'])
+    ...mapState(['user_info', 'week'])
   },
   methods: {
     ...mapMutations({
-      setState: 'SET_STATE'
+      setState: 'SET_STATE',
+      setWeek: 'SET_WEEK'
     }),
     changeOne (val) {
       this.complete = val
@@ -61,6 +64,12 @@ export default {
       this.change()
     },
     change () {
+      this.setWeek({
+        complete: this.complete,
+        trouble: this.trouble,
+        plane: this.plane,
+        url: this.url
+      })
       if (this.complete && this.trouble && this.plane) {
         this.noSubmit = false
       } else {
@@ -92,6 +101,18 @@ export default {
           }
         })
       }
+    },
+    getWeek () {
+      this.loading = true
+      let a = JSON.parse(local.getItem('week'))
+      if (a) {
+        this.complete = a.complete
+        this.trouble = a.trouble
+        this.plane = a.plane
+        this.url = a.url
+      }
+      this.change()
+      this.loading = false
     }
   },
   filters: {
@@ -99,7 +120,9 @@ export default {
       return val === 3 ? '已请假' : '未请假'
     }
   },
-  mounted () {}
+  mounted () {
+    this.getWeek()
+  }
 }
 </script>
 

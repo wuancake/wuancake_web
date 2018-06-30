@@ -16,7 +16,7 @@
       </div>
       <div class="leave-main-textarea">
         <span class="leave-main-label">请假理由（必填）</span>
-        <textarea class="leave-main-text" v-model="content" placeholder="请假理由不得少于35个字..."></textarea>
+        <textarea class="leave-main-text" v-model="content" placeholder="输入请假理由..."></textarea>
       </div>
     </div>
     <button class="leave-btn" @click="submit">提交请假申请</button>
@@ -50,13 +50,13 @@ export default {
         })
         return
       }
-      if (this.content.length < 35) {
-        this.$message({
-          message: '请假理由不得少于35个字',
-          type: 'warning'
-        })
-        return
-      }
+      // if (this.content.length < 35) {
+      //   this.$message({
+      //     message: '请假理由不得少于35个字',
+      //     type: 'warning'
+      //   })
+      //   return
+      // }
       applyLeave({
         userId: this.user_info.user_id,
         weekNum: this.selectWeeks,

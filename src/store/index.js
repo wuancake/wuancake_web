@@ -14,7 +14,8 @@ const store = new Vuex.Store({
       // user_name: '二马',
       // group_name: '...',
       // state: 1
-    }
+    },
+    week: {}
   },
   mutations: {
     SET_GROUPS: (state, groups) => {
@@ -32,6 +33,10 @@ const store = new Vuex.Store({
       obj.state = val
       state.user_info = obj
       local.setItem('user_info', obj)
+    },
+    SET_WEEK: (state, week) => {
+      state.week = week
+      local.setItem('week', week)
     },
     CLEAR: (state) => {
       state.user_info = {}

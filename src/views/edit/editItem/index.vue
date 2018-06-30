@@ -1,18 +1,16 @@
 <template>
   <div class="edit-item">
     <p class="edit-item-title">{{ title }}</p>
-    <el-input @input="change" type="textarea" v-model="note" placeholder="输入内容..." :rows="row ? row : 3"></el-input>
+    <el-input @input="change" type="textarea" :value="note" placeholder="输入内容..." :rows="row ? row : 3"></el-input>
   </div>
 </template>
 
 <script>
 export default {
   name: 'editItem',
-  props: ['title', 'row'],
+  props: ['title', 'row', 'note'],
   data () {
-    return {
-      note: ''
-    }
+    return {}
   },
   methods: {
     change (val) {

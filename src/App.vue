@@ -18,6 +18,7 @@ export default {
 @import url('./common/styles');
 html, body {
   height: 100%;
+  font-family: '微软雅黑';
 }
 #app {
   height: 100%;
