@@ -35,6 +35,7 @@ export default {
 }
 .nav {
   width: 266px;
+  height: 100%;
   background: #006fdd;
 }
 .main {
