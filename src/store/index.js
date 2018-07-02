@@ -41,6 +41,9 @@ const store = new Vuex.Store({
     CLEAR: (state) => {
       state.user_info = {}
       local.clear()
+    },
+    REMOVE_KEY: (state, key) => {
+      local.remove(key)
     }
   },
   actions: {

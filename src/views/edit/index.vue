@@ -45,7 +45,8 @@ export default {
   methods: {
     ...mapMutations({
       setState: 'SET_STATE',
-      setWeek: 'SET_WEEK'
+      setWeek: 'SET_WEEK',
+      remove: 'REMOVE_KEY'
     }),
     changeOne (val) {
       this.complete = val
@@ -91,6 +92,7 @@ export default {
               title: '提交成功',
               message: res.infoText
             })
+            this.remove('week')
             this.setState(2)
             this.$router.push({ path: '/' })
           } else {

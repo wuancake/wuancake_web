@@ -12,6 +12,9 @@ class Local {
   clear () {
     this.storage.clear()
   }
+  remove (key) {
+    this.storage.removeItem(key)
+  }
 }
 
 const local = new Local()
