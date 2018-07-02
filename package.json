@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "element-ui": "^2.3.6",
     "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.0",
