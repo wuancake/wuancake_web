@@ -18,6 +18,10 @@
       </li>
       <li :class="{ 'active': active === 3 }" @click="change(3)">
         <img src="/static/img/set.png" alt="">
+        <span>我的账号</span>
+      </li>
+      <li :class="{ 'active': active === 4 }" @click="change(4)">
+        <img src="/static/img/set.png" alt="">
         <span>退出登录</span>
       </li>
     </ul>
@@ -56,6 +60,17 @@ export default {
           }
           break
         case 3:
+          if (this.user_info.group_id === 0) {
+            this.$message({
+              message: '请先选择分组再进行次操作！',
+              type: 'warning'
+            })
+          } else {
+            this.active = val
+            this.$router.push({ path: '/exitGroup' })
+          }
+          break
+        case 4:
           this.active = val
           this.logOutF()
           break

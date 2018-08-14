@@ -11,6 +11,7 @@ import Edit from '@/views/edit'
 import Weeklys from '@/views/weeklys'
 import Login from '@/views/login'
 import Log from '@/views/login/login'
+import exitGroup from '@/views/exitGroup'
 
 Vue.use(Router)
 
@@ -134,6 +135,19 @@ export default new Router({
       meta: {
         title: '登录 - 午安考勤'
       }
+    },
+    {
+      path: '/exitGroup',
+      component: Layout,
+      children: [
+        {
+          path: '',
+          component: exitGroup,
+          meta: {
+            title: '退出分组 - 午安考勤'
+          }
+        }
+      ]
     }
   ]
 })
