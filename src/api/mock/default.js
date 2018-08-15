@@ -91,4 +91,8 @@ export default function defaultRule (MockAdapter) {
       user_id: 8,
       group_id: 0
     })
+    .onPost('/quitGroup').reply(200, {
+      infoText: '退出成功',
+      infoCode: 200
+    })
 }

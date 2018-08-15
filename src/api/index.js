@@ -92,3 +92,11 @@ export function weeklys (params) { // 获取周报列表
     data: params
   })
 }
+
+export function quitGroup (params) { // 退出分组接口
+  return fetch({
+    url: '/quitGroup',
+    method: 'post',
+    data: params
+  })
+}

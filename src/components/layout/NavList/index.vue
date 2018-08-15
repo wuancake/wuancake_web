@@ -51,7 +51,7 @@ export default {
         case 2:
           if (this.user_info.group_id === 0) {
             this.$message({
-              message: '请先选择分组再进行次操作！',
+              message: '请先选择分组再进行此操作！',
               type: 'warning'
             })
           } else {
@@ -62,7 +62,7 @@ export default {
         case 3:
           if (this.user_info.group_id === 0) {
             this.$message({
-              message: '请先选择分组再进行次操作！',
+              message: '请先选择分组再进行此操作！',
               type: 'warning'
             })
           } else {

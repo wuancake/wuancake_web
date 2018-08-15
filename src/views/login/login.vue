@@ -53,7 +53,8 @@ export default {
               if (res.groupId === 0) {
                 this.setUserInfo({
                   user_id: res.userId,
-                  group_id: res.groupId
+                  group_id: res.groupId,
+                  user_name: res.userName
                 })
                 this.$router.push({ path: '/group' })
               } else {
