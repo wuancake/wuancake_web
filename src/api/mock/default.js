@@ -91,4 +91,8 @@ export default function defaultRule (MockAdapter) {
       user_id: 8,
       group_id: 0
     })
+    .onPost('/changeNickName').reply(200, {
+      infoText: '修改成功',
+      infoCode: 200,
+    })
 }

@@ -67,7 +67,7 @@ export default {
             })
           } else {
             this.active = val
-            this.$router.push({ path: '/exitGroup' })
+            this.$router.push({ path: '/account' })
           }
           break
         case 4:
@@ -144,13 +144,13 @@ export default {
   position: relative;
 }
 .menu li:hover {
-  background: rgba(255, 255,255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 .active {
-  background: rgba(255, 255,255, 0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 .active::after {
-  content: '';
+  content: "";
   display: block;
   width: 5px;
   height: 100%;

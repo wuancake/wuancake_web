@@ -26,7 +26,8 @@ export default {
 .exit-group {
   color: #183e96;
 }
-.exit-group h1, .exit-group p {
+.exit-group h1,
+.exit-group p {
   margin: 0;
 }
 .exit-group-content h1 {
