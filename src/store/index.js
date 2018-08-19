@@ -44,6 +44,13 @@ const store = new Vuex.Store({
     },
     REMOVE_KEY: (state, key) => {
       local.remove(key)
+    },
+    QUIT_GROUP: state => {
+      let obj = state.user_info
+      obj.group_id = 0
+      obj.group_name = ''
+      state.user_info = obj
+      local.setItem('user_info', obj)
     }
   },
   actions: {

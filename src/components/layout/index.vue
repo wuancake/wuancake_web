@@ -35,7 +35,7 @@ export default {
 }
 .nav {
   width: 266px;
-  height: 100%;
+  /* height: 100%; */
   background: #006fdd;
 }
 .main {
@@ -43,5 +43,8 @@ export default {
   background-image: url('/static/img/background1.png');
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
 }
 </style>
