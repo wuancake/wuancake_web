@@ -112,6 +112,7 @@ export default {
   border: 1px solid #0565fe;
   cursor: pointer;
   margin: 21px 0;
+  width: 325px;
 }
 .submit:hover {
   box-shadow: 1px 1px 4px 1px rgb(192, 191, 191);
