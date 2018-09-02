@@ -60,6 +60,14 @@ export function recoverPassword (params) { // 找回密码
     data: data
   })
 }
+export function changeNickName (params) { // 设置
+  const data = params
+  return fetch({
+    url: '/updateUserName',
+    method: 'post',
+    data: data
+  })
+}
 
 export function saveWeekly (params) { // 保存周报
   return fetch({
