@@ -95,4 +95,8 @@ export default function defaultRule (MockAdapter) {
       infoText: '退出成功',
       infoCode: 200
     })
+    .onPost('/updatePassword').reply(200, {
+      infoText: '密码修改成功',
+      infoCode: 200
+    })
 }
