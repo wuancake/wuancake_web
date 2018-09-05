@@ -26,26 +26,25 @@
 
 <script>
 import { changeNickName } from '../../api'
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 export default {
   name: 'account',
-  data() {
+  data () {
     return {
       nickName: ''
-    }; 
+    }
   },
   computed: {
     ...mapState(['user_info'])
   },
-  
   methods: {
-    exit() {
-      this.$router.push({ path: '/exitGroup' });
+    exit () {
+      this.$router.push({ path: '/exitGroup' })
     },
-    changePassword() {
-       this.$router.push({ path: '/changePassword' });
+    changePassword () {
+      this.$router.push({ path: '/changePassword' })
     },
-    changeInfo() {
+    changeInfo () {
       changeNickName({
         userid: this.user_info.user_id,
         userName: this.nickName
@@ -65,7 +64,7 @@ export default {
       })
     }
   }
-};
+}
 </script>
 
 <style scoped>
