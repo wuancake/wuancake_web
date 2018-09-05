@@ -11,14 +11,14 @@
       <el-form-item prop="again">
         <el-input type="password" v-model="formData.again" placeholder="确认密码"></el-input>
       </el-form-item>
-      <button @click="submit" class="submit">修改</button>
+      <button type="button" @click="submit" class="submit">修改</button>
     </el-form>
   </div>
 </template>
 
 <script>
 import { updatePassword } from '../../api'
-import { mapState } from 'vuex'
+import { mapState, mapMutations  } from 'vuex'
 export default {
   name: 'changePassword',
   data () {
@@ -54,6 +54,9 @@ export default {
     ])
   },
   methods: {
+    ...mapMutations({
+      logout: 'CLEAR'
+    }),
     submit () {
       updatePassword({
         userId: this.user_info.user_id,
@@ -63,9 +66,11 @@ export default {
       }).then(res => {
         if (res.infoCode === 200 || res.infoCode === '200') {
           this.$message({
-            message: '密码修改成功！',
+            message: '密码修改成功！请重新登录',
             type: 'success'
           })
+          this.logout()
+          this.$router.push({ path: '/log' })
         } else {
           this.$message({
             message: '密码修改失败！',
