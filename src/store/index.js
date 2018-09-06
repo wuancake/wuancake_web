@@ -13,7 +13,8 @@ const store = new Vuex.Store({
       // group_id: 0,
       // user_name: '二马',
       // group_name: '...',
-      // state: 1
+      // state: 1,
+      // email: ''
     },
     week: {}
   },

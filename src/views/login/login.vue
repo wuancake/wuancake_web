@@ -54,7 +54,8 @@ export default {
                 this.setUserInfo({
                   user_id: res.userId,
                   group_id: res.groupId,
-                  user_name: res.userName
+                  user_name: res.userName,
+                  email: this.formData.email
                 })
                 this.$router.push({ path: '/group' })
               } else {
@@ -62,7 +63,8 @@ export default {
                   user_id: res.userId,
                   group_id: res.groupId,
                   user_name: res.userName,
-                  group_name: res.groupName
+                  group_name: res.groupName,
+                  email: this.formData.email
                 })
                 this.$router.push({ path: '/' })
               }

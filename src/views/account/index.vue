@@ -3,12 +3,12 @@
     <div class="set-group-content">
       <p>
         <label>昵称: </label>
-        <input v-model="nickName" type="text" placeholder=""/>
+        <input v-model="nickName" type="text" :placeholder="user_info.user_name"/>
       </p>
       <p>
         <label>邮箱：</label>
-        <!-- <span>{{ user_info.email }}</span> -->
-        <span>1412759770@qq.com</span>
+        <span>{{ user_info.email }}</span>
+        <!-- <span>1412759770@qq.com</span> -->
       </p>
       <p>
         <label>分组：</label>
@@ -26,7 +26,7 @@
 
 <script>
 import { changeNickName } from '../../api'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'account',
   data () {
@@ -38,6 +38,9 @@ export default {
     ...mapState(['user_info'])
   },
   methods: {
+    ...mapMutations({
+      setUserInfo: 'SET_USER_INFO'
+    }),
     exit () {
       this.$router.push({ path: '/exitGroup' })
     },
@@ -49,10 +52,13 @@ export default {
         userid: this.user_info.user_id,
         userName: this.nickName
       }).then(res => {
-        if (res.infoCode === '200') {
+        if (res.infoCode === '200' || res.infoCode === 200) {
           this.$notify.success({
             title: '设置成功',
             message: '设置个人信息成功'
+          })
+          this.setUserInfo({
+            user_name: this.nickName
           })
           this.$router.push({ path: '/' })
         } else {
